@@ -145,10 +145,4 @@ public class AWS_Setup : MonoBehaviour
             RecieveScoresFromAWS();
         });
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
 }

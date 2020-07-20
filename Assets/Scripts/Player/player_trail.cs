@@ -4,47 +4,25 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class player_trail : MonoBehaviour
+public class Player_Trail : MonoBehaviour
 {
     // vars to find object to follow
     public GameObject player;
-    public player_store player_Store;
+    public Player_Store player_Store;
     public GameObject sphere_to_follow;
 
     // vars for follow distance
-    private int followDistance = 2;
     public float criticalDistance = 0.2f;
     private List<Vector3> storedPositions;
-
-    // vars for motion
-    [SerializeField, Range(0f, 1000f)]
-    public float maxAcceleration = 500f;
-    [SerializeField, Range(0f,100f)]
-    public float maxSpeed = 40f;
-    private Vector3 _pos;
     private Boolean DistanceReached = false;
-    private int desiredCount = 0;
-    private Vector3 Velocity;
 
     // vars for collider
     private bool activateCollider;
-    private SphereCollider myCollider;
 
     void Start()
     {
-        //maxAcceleration *= StaticInfo.game_difficulty;
-        //maxSpeed *= StaticInfo.game_difficulty;
-        //if (StaticInfo.game_difficulty_int > 3)
-        //{
-        //    followDistance = 1;
-        //
-        //else if (StaticInfo.game_difficulty_int > 7)
-       // {
-       //     followDistance = 0;
-        //}
-            // recieve current spheres and attach self.
         player = GameObject.Find("Player");
-        player_Store = player.GetComponent<player_store>();
+        player_Store = player.GetComponent<Player_Store>();
         if (player_Store.Tail_Objs.Count != 0)
         {
             sphere_to_follow = player_Store.Tail_Objs[player_Store.Tail_Objs.Count - 1];
@@ -58,7 +36,6 @@ public class player_trail : MonoBehaviour
         // intialise collision?
         if (player_Store.Tail_Objs.Count > 1)
         {
-            myCollider = gameObject.GetComponent<SphereCollider>();
             activateCollider = true;
         }
 
@@ -100,6 +77,7 @@ public class player_trail : MonoBehaviour
         {
             if (activateCollider == true)
             {
+                StaticInfo.Score = 0;
                 SceneManager.LoadScene(sceneName: "Menu");
             }
             

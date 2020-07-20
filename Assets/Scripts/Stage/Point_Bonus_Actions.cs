@@ -7,20 +7,20 @@ public class Point_Bonus_Actions : MonoBehaviour
 {
     public Vector3 RotateAmount = new Vector3(90, 180, 360);
     public int Cutspeed = 2;
-    private Renderer renderer; 
+    private Renderer render; 
     public Color colour;
     private Boolean forward = true;
 
     public GameObject timerBar;
     public GameObject if_point_obj;
     public Game_UI_Script _ui;
-    public player_store player_Store;
+    public Player_Store player_Store;
     // Start is called before the first frame update
     private void Start()
     {
-        renderer = gameObject.GetComponent<Renderer>();
-        colour = renderer.material.color;
-        player_Store = GameObject.Find("Player").GetComponent<player_store>();
+        render = gameObject.GetComponent<Renderer>();
+        colour = render.material.color;
+        player_Store = GameObject.Find("Player").GetComponent<Player_Store>();
         _ui = GameObject.Find("UI_Panel").GetComponent<Game_UI_Script>();
     }
     // Update is called once per frame
@@ -73,7 +73,7 @@ public class Point_Bonus_Actions : MonoBehaviour
                     forward = true;
                 }
             }
-            renderer.material.color = colour;
+            render.material.color = colour;
         }
     }
 
@@ -83,7 +83,7 @@ public class Point_Bonus_Actions : MonoBehaviour
         if (collision.gameObject.name == "Player")
         {
             Destroy(this.gameObject);
-            StaticInfo.score += 10 * StaticInfo.game_difficulty_int;
+            StaticInfo.Score += 10 * StaticInfo.Game_Difficulty_Int;
             _ui.UpdateBoards();
             if (player_Store.Tail_Objs.Count > 0)
             {

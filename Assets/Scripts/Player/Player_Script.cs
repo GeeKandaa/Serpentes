@@ -5,22 +5,13 @@ using System;
 
 public class Player_Script : MonoBehaviour
 {
-    [SerializeField, Range(0f, 100f)]
-    float maxSpeed = 20f;
-
-    [SerializeField, Range(0f, 100f)]
-    float maxAcceleration = 30f;
-
+    private float maxSpeed = 10f;
     public Renderer Stage;
-    public Rect allowedArea;
-
-    Vector3 Velocity;
+    private Rect allowedArea;
 
     private void Start()
     {
-        StaticInfo.game_difficulty_int = 2;
-        // maxAcceleration *= StaticInfo.game_difficulty;
-        // maxSpeed *= StaticInfo.game_difficulty;
+        maxSpeed += StaticInfo.Game_Difficulty_Int*2;
         allowedArea = new Rect(new Vector2(0,0), Stage.bounds.size);
     }
     private void Update()
@@ -53,6 +44,7 @@ public class Player_Script : MonoBehaviour
         // Contained motion.
         if (!allowedArea.Contains(new Vector2(NewPosition.x, NewPosition.y)))
         {
+            StaticInfo.Score = 0;
             SceneManager.LoadScene(sceneName: "Menu");
         }
         transform.localPosition = NewPosition;

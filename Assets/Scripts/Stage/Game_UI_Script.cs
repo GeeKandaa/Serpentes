@@ -16,7 +16,7 @@ public class Game_UI_Script : MonoBehaviour
     // Update is called once per frame
     public void UpdateBoards()
     {
-        _scoreboard.text = StaticInfo.score.ToString();
-        _Highscoreboard.text = StaticInfo.highscore.ToString();
+        _scoreboard.text = StaticInfo.Score.ToString();
+        _Highscoreboard.text = StaticInfo.Highscore.ToString();
     }
 }

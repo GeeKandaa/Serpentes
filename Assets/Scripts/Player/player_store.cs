@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class player_store : MonoBehaviour
+public class Player_Store : MonoBehaviour
 {
     public List<GameObject> Tail_Objs;
     public GameObject player;

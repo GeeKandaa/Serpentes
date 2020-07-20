@@ -5,7 +5,7 @@ using UnityEditor;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class generate_points : MonoBehaviour
+public class Generate_Points : MonoBehaviour
 {
     public GameObject point_obj;
     public GameObject bonus_obj;
@@ -42,11 +42,11 @@ public class generate_points : MonoBehaviour
             GameObject new_point = Instantiate(point_obj, rand_pos, Quaternion.identity);
             active_point.Add(new_point);
         }
-        if (active_point[0] == null)
+        if (active_point.Count != 0 && active_point[0] == null)
         {
             active_point.RemoveAt(0);
         }
-        if (active_bonus[0] == null)
+        if (active_bonus.Count != 0 && active_bonus[0] == null)
         {
             active_bonus.RemoveAt(0);
         }
